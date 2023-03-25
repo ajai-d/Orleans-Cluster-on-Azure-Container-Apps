@@ -47,6 +47,8 @@ jobs:
       with:
         inlineScript: >
           echo "Creating resource group in Azure"
+          az config set bicep.use_binary_from_path=False
+          az bicep install
           echo "Executing 'az group create -l ${{ env.REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}'"
 
           az group create -l ${{ env.REGION }} -n ${{ env.RESOURCE_GROUP_NAME }}
