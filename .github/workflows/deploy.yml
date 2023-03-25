@@ -55,9 +55,14 @@ jobs:
       uses: azure/CLI@v1
       with:
         inlineScript: >
-          echo "Creating resources"
+          echo "installing bicep"
+                    
           az config set bicep.use_binary_from_path=False
+          
           az bicep install
+          
+          echo "Creating resources"
+          
           echo "Executing az deployment group create --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file '/github/workspace/Azure/main.bicep' --debug"
 
           az deployment group create --resource-group ${{ env.RESOURCE_GROUP_NAME }} --template-file '/github/workspace/Azure/main.bicep' --debug
